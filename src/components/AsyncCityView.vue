@@ -43,6 +43,17 @@
         <p>
             Feels like {{ Math.round(weatherData.current.feels_like)}}
         </p>
+        <p class="capitalize">
+          {{ weatherData.current.weather[0].description }}
+        </p>
+        <img 
+           class="w-[150px] h-auto"
+           :src=" 
+           `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`
+
+           "
+           alt=""
+        />
        </div>
     
        </div>
@@ -51,11 +62,13 @@
 
 <script setup>
 import axios from 'axios';
-import {useRouter} from "vue-router"
-const route = useRouter();
-const api_key="f20168f50b2efd50b736d22e1ed77492";
+import {useRoute} from "vue-router"
+
+const route = useRoute();
+const api_key=import.meta.env.VITE_APP_OPEN_WEATHER_API_KEY;
 const getWeatherData = async () => {
     try{ 
+     console.log(route);   
      const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=${api_key}&units=imperial`);
      console.log(weatherData);
 

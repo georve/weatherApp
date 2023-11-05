@@ -34,7 +34,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 const searchQuery=ref("");
 const queryTimeout=ref(null);
-const mapboxAPIKey="pk.eyJ1IjoiZ2VvcnZlIiwiYSI6ImNsbnZpczc3NTBvYngycW9qZjR4eHFxdmEifQ.YsNdK_T89b68N0i2YlehxQ"
+const mapboxAPIKey=import.meta.env.VITE_APP_MAXBOX_API_KEY
 const mapboxSearchResults = ref(null);
 const searchError = ref(null)
 const router = useRouter()
